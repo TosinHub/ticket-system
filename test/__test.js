@@ -1,4 +1,5 @@
 import TicketService from "../src/pairtest/TicketService";
+import jest from "jest"
 
 const ticketService = new TicketService();
 
@@ -12,12 +13,12 @@ describe('TicketService', () => {
     });
     describe('purchaseTickets', () => {
         test('should return error if the total number of tickets requested would exceed the maximum number of tickets that can be sold', () => {
-            const result = ticketService.purchaseTickets({infant: 1, child: 10, adult: 10}, 1);
+            const result = ticketService.purchaseTickets(1, {INFANT: 1, CHILD: 10, ADULT: 10});
             expect(result).toEqual('Error: Maximum limit of 20 tickets exceeded');
         });
         test('should return error if request is not valid', () => {
-            const result = ticketService.purchaseTickets({infant: 1, child: 1}, 1);
-
+            const result = ticketService.purchaseTickets({INFANT: 1, CHILD: 1}, 1);
+            expect(result).toEqual('Error : CHILD and INFANT ticket cannot be purchased without an ADULT ticket');
         })
 
     })

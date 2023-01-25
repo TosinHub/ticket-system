@@ -22,8 +22,8 @@ export default class TicketService {
     }
 
     if(CHILD > 0 || INFANT > 0) {
-      if(ADULT === 0 ){
-        throw new TypeError('Error : CHILD and INFANT ticket cannot be purchased without an ADULT ticket ');
+      if(ADULT === 0 || ADULT === null ){
+        throw new TypeError('Error : CHILD and INFANT ticket cannot be purchased without an ADULT ticket');
       }
     }
 
